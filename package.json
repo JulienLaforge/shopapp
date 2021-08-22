@@ -1,0 +1,19 @@
+{
+  "name": "shopapp",
+  "version": "1.0.0",
+  "description": "Julien Laforge's portfolio.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "node.js",
+    "express"
+  ],
+  "author": "Julien Laforge",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
