@@ -1,16 +1,1 @@
-[
-  {
-    "title": "Book",
-    "imageUrl": "https://data.pixiz.com/output/user/frame/preview/400x400/9/5/9/7/3507959_e67ec.jpg",
-    "description": "An awesome Book!",
-    "price": "20.99",
-    "id": "0.627089954471145"
-  },
-  {
-    "id": "0.505127084261566",
-    "title": "Another Book",
-    "imageUrl": "https://data.pixiz.com/output/user/frame/preview/400x400/9/5/9/7/3507959_e67ec.jpg",
-    "description": "Another awesome Book!",
-    "price": "21.99"
-  }
-]
+[]
