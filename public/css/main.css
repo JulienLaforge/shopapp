@@ -19,6 +19,18 @@ form {
   display: inline;
 }
 
+.centered {
+  text-align: center;
+}
+
+.image {
+  height: 20rem;
+}
+
+.image img {
+  height: 100%;
+}
+
 .main-header {
   width: 100%;
   height: 3.5rem;
@@ -191,20 +203,6 @@ form {
 .btn:active {
   background-color: #00695c;
   color: white;
-}
-
-.centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.centered > hr {
-  background-color: lightgray;
-  border-style: none;
-  height: 3px;
-  margin: 0.5em 0;
-  width: 100%;
 }
 
 @media (min-width: 768px) {
