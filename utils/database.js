@@ -1,9 +1,12 @@
 const Sequelize = require('sequelize');
-const config = require('./config');
 
-const sequelize = new Sequelize('julien_laforge_shopapp', 'root', config.dbPassword, { 
-  dialect: 'mysql',
-  host: 'localhost'
-});
+const sequelize = new Sequelize(
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
+  { 
+    dialect: 'mysql',
+    host: 'localhost'
+  });
 
 module.exports = sequelize;
