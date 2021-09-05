@@ -1,13 +1,28 @@
-const Sequelize = require('sequelize');
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const sequelize = new Sequelize(
-  process.env.MYSQL_DATABASE,
-  process.env.MYSQL_USER,
-  process.env.MYSQL_PASSWORD,
-  { 
-    dialect: 'mysql',
-    host: process.env.MYSQL_HOST,
-    port: 3306
-  });
+let _db;
 
-module.exports = sequelize;
+const mongoConnect = callback => {
+  MongoClient
+    .connect('mongodb+srv://julien:'+ process.env.MONGO_PASSWORD +'@cluster0.txgkv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+    .then(client => {
+      console.log('Connected!');
+      _db = client.db();
+      callback();
+    })
+    .catch(err => {
+      console.log(err);
+      throw err;
+    });
+}
+
+const getDb = () => {
+  if (_db) {
+    return _db;
+  }
+  throw 'No database found!';
+}
+
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;
