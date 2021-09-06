@@ -1,9 +1,8 @@
 const path = require('path');
-
 const express = require('express');
+const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./utils/database').mongoConnect;
 
 const User = require('./models/user');
 
@@ -20,9 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   User
-    .findById('6134c80e66a4dce69b1af520')
+    .findById('6135e09ef9f64f1c77426057')
     .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -33,6 +32,25 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(process.env.PORT || 3000);
-})
+mongoose
+  .connect(
+    'mongodb+srv://'
+    + process.env.MONGO_USER
+    + ':'
+    + process.env.MONGO_PASSWORD
+    + '@shop.txgkv.mongodb.net/shop')
+  .then(() => {
+    User.findOne().then(user => {
+      if(!user)  {
+        const user = new User({
+          name: "Julien",
+          email: "julien.a.laforge@gmail.com",
+          cart: {items: []}
+        });
+        user.save();
+      }
+    });
+    app.listen(3000);
+    console.log('Connected!')
+  })
+  .catch(err => console.log(err));
